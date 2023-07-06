@@ -1,0 +1,1 @@
+from veikals import app

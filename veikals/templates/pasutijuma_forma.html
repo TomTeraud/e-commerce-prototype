@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Pasūtījuma noformēšana</h1><hr>
+
+<form action="" method="post" >
+    <h2>Kontaktinformācija</h2>
+    {{ pf.hidden_tag() }}
+    
+    <p>
+        {{ pf.email.label }}<br>
+        {{ pf.email(size=120) }}<br>
+        {% for error in pf.email.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    
+    <h2>Piegādes informācija</h2>
+
+    <p>
+        {{ pf.vards.label }}<br>
+        {{ pf.vards(size=32) }}<br>
+        {% for error in pf.vards.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ pf.uzvards.label }}<br>
+        {{ pf.uzvards(size=32) }}<br>
+        {% for error in pf.uzvards.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ pf.telefons.label }}<br>
+        {{ pf.telefons(size=32) }}<br>
+        {% for error in pf.telefons.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ pf.valsts.label }}<br>
+        {{ pf.valsts() }}<br>
+        {% for error in pf.valsts.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ pf.pilseta.label }}<br>
+        {{ pf.pilseta(size=32) }}<br>
+        {% for error in pf.pilseta.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ pf.adrese.label }}<br>
+        {{ pf.adrese(size=64) }}<br>
+        {% for error in pf.adrese.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ pf.pasta_index.label }}<br>
+        {{ pf.pasta_index(size=32) }}<br>
+        {% for error in pf.pasta_index.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p> 
+
+    <p>{{ pf.submit() }}</p>
+</form>
+
+
+
+
+{% endblock %}

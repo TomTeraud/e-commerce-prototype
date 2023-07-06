@@ -1,0 +1,22 @@
+
+<br>
+Id: {{ prece.id }}
+<br>
+Artikuls: {{ prece.artikuls }}
+<br>
+Apraksts: {{ prece.apraksts }}
+<br>
+Izejmateriāli: {{ prece.izejmateriali }}
+<br>
+Krāsa: {{ prece.krasa }}
+<br>
+Izmers: {{ prece.izmers }}
+<br>
+Cena: {{ prece.cena | eur }}
+<br>
+{% if prece.discount > 0 %}
+Atlaide: {{ prece.discount }}%
+<br>
+Cena ar atlaidi: {{ prece.cena| discount(prece.discount) }}
+<br>
+{% endif %}

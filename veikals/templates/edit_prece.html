@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Preces datubāzē</h1>
+<div style="background-color: rgb(249, 255, 198); padding: 20px;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Artikuls</th>
+                <th>Klase</th>
+                <th>Grupa</th>
+                <th>Veids</th>
+                <th>Apraksts</th>
+                <th>Izejmateriāli</th>
+                <th>Krāsa</th>
+                <th>Izmers</th>
+                <th>Cena</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <form action="" method="post">
+                {{ spf.hidden_tag() }}
+                {% include '_edit_prece_select_btn.html' %}
+
+
+                {% for prece in pagination %}
+                {% if id_atr['id']| int == prece.id %}
+                <tr style="background-color: rgb(92, 250, 126);">
+                    {% else %}
+                <tr>
+                    {% endif %}
+                    <td><button type="submit" name="id" value="{{ prece.id }}">{{ prece.id }}</button></td>
+                    {% include '_edit_prece_data.html' %}
+                </tr>
+                {% endfor %}
+
+
+            </form>
+
+
+
+        </tbody>
+
+
+    </table>
+</div>
+
+<!-- Start paginate btn -->
+<div class="pagination">
+    {% if prev_url %}
+    <a href="{{ prev_url }}">Iepriekšējā lapa</a>
+    {% endif %}
+    {% if next_url %}
+    <a href="{{ next_url }}">Nākamā lapa</a>
+    {% endif %}
+</div>
+<!-- End paginate btn -->
+
+<br><br>
+
+<!-- Start of form field -->
+<h1>Pievienot jaunu preci veikalam, labot esošu, vai dzēst</h1>
+<div style="background-color: rgb(198, 255, 210); padding: 20px;">
+    <form action="" method="post" name="pievienot">
+        {{ apf.hidden_tag() }}
+        <h6>ID:{{ id_atr['id'] }} <br> Artikuls:{{ id_atr['atr'] }} </h6>
+
+        {% include '_preceForma.html' %}
+        <button type="submit" name="target" style="background-color: rgb(0, 255, 0);" value="add_new_prece">IZVEIDOT
+            JAUNU</button>
+        <button type="submit" name="target" style="background-color: rgb(255, 229, 83);"
+            value="edit_selected_prece">LABOT IZVĒLĒTO PRECI</button>
+        <button type="submit" name="target" style="background-color: red;" value="delete_selcetd_prece">IZDZĒST IZVĒLĒTO
+            PRECI</button>
+    </form>
+</div>
+<!-- End of form field -->
+<br>
+
+
+<!-- Start of image field -->
+<div style="background-color: rgb(238, 84, 84); padding: 20px;">
+    <h3>Pievienot jaunu bildi izvēlētajam produktam</h3>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Pievienot bildi">
+    </form>
+</div>
+<br>
+<h3>Izvēlētā produkta bildes</h3>
+<div class="d-flex align-items-stretch">
+    <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-xxl-4 g-3">
+        {% for bilde in preces_bildes %}
+        <div class="col">
+            <div class="card">
+                <!-- Start of original img -->
+                <div>
+                    <img src="{{ bilde.bilde_url }}" alt="Bilde" style="width:100%">
+                    <!-- Check if main image: -->
+                    {% if bilde.bilde_url == titulbildes_url %}
+                    <h4>Šī ir titulbilde!</h4>
+                    {% else %}
+                    <!-- set as main image -->
+                    <form action="/set_title_bilde" method="post">
+                        <input type="hidden" name="id" value="{{ bilde.id }}">
+                        <input type="hidden" name="bilde_url" value="{{ bilde.bilde_url }}">
+                        <button>Iestatīt kā titulbili!</button>
+                        {{ spf.hidden_tag() }}
+                    </form>
+                    {% endif %}
+                   <!-- End of check for title img -->
+                </div>
+                <!-- End of original img -->
+<br>
+                <!-- Start of thumbnail img -->
+                <div>
+                    <img src="{{ bilde.thumbnail_url }}" alt="Bilde thumbnail_url" style="width:50%">
+                    <!-- Start check if curent img title image: -->
+                    {% if bilde.thumbnail_url == titulbildes_url %}
+                    <h4>Šī ir titulbilde!</h4>
+                    {% else %}
+                    <!-- Set as title image -->
+                    <form action="/set_title_bilde" method="post">
+                        <input type="hidden" name="id" value="{{ bilde.id }}">
+                        <input type="hidden" name="bilde_url" value="{{ bilde.thumbnail_url }}">
+                        <button>Iestatīt kā titulbili!</button>
+                        {{ spf.hidden_tag() }}
+                    </form>
+                    <!-- End of set title img -->
+                    {% endif %}
+                    <!-- End of check for title img -->
+                    <!-- Start delete both ibgs -->
+                    <form action="/delete_bilde" method="post">
+                        <br>
+                        {{ spf.hidden_tag() }}
+                        <input type="hidden" name="id" value="{{ bilde.id }}">
+                        <input type="hidden" name="bilde_name" value="{{ bilde.bilde_name }}">
+                        <input type="hidden" name="url" value="{{ bilde.bilde_url }}">
+                        <button style="background-color: crimson;">Dzēst abas bildes!</button>
+                        {{ bilde.bilde_name }}
+                    </form>
+                    <!-- End of delete both imgs -->
+                </div>
+                <!-- End of thumbnail img -->
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- End of image field -->
+<br><br><br>
+
+
+
+<br>
+<h4>(šī lapa nebūs pieejama veikala apmeklētājiem )</h4>
+{% endblock %}

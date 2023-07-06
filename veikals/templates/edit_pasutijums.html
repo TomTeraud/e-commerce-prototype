@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Informācija par pasūtījumu</h3>
+<table class="table table-striped table-bordered">
+    <thead >
+        <tr>
+            <th>ID</th>
+            <th>Datums</th>
+            <th>Summa</th>
+            <th>Status</th>
+            <th>Pircēja e-mail</th>
+            <th>Pircēja mob. nr.</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <tr>
+            <td>{{ pasutijums.id }}</td>
+            <td>{{ pasutijums.pasutijuma_datums }}</td>
+            <td>{{ pasutijums.summa| eur }}</td>
+            <td>{{ pasutijums.status }}</td>
+            <td>{{ user_data.email }}</td>
+            <td>{{ user_data.telefons }}</td>
+    </tbody>
+</table>
+
+
+
+<br>
+<h3>Preces pasūtījumā</h3>
+<table class="table table-striped table-bordered">
+    <thead >
+        <tr>
+            <th>Artikuls</th>
+            <th>Cena</th>
+            <th>Atlaide</th>
+            <th>Cena ar atlaidi</th>
+            <th>Izmērs</th>
+            <th>Krāsa</th>
+            <th>Veids</th>
+            <th>Klase</th>
+            <th>Grupa</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% for prece in preces_pasutijumam %}
+        <tr>
+            <td>{{ prece.artikuls }}</td>
+            <td>{{ prece.cena| eur }}</td>
+            <td>{{ prece.atlaide }}</td>
+            <td>{{ prece.cena| discount(prece.atlaide) }}</td>
+            <td>{{ prece.izmers }}</td>
+            <td>{{ prece.krasa }}</td>
+            <td>{{ prece.veids }}</td>
+            <td>{{ prece.klase }}</td>
+            <td>{{ prece.grupa }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+    
+<h2>Mainīt datus</h2>
+<form action="" method="post" novalidate>
+    {{ epf.hidden_tag() }}
+    <p>
+        {{ epf.edit_status.label }}<br>
+        {{ epf.edit_status(size=4) }}<br>
+        {% for error in epf.edit_status.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>{{ epf.submit() }}</p>
+</form>
+<form action="" method="post" novalidate>
+    {{ epf.hidden_tag() }}
+    <p>{{ epf.delete_pasutijums() }}</p>
+    
+</form>
+
+{% endblock %}

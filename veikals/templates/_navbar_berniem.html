@@ -1,0 +1,9 @@
+<a class="nav-link dropdown-toggle dropdown-toggle-split" href="#" role="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Bērniem
+    </a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{{ url_for('veikals', pr_klase = 'berniem', pr_grupa = 'apgerbs') }}">Apģērbs</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('veikals', pr_klase = 'berniem', pr_grupa = 'ratiem') }}">Ratiem</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('veikals', pr_klase = 'berniem', pr_grupa = 'somas') }}">Somas</a></li>
+    </ul>

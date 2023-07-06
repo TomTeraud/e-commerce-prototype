@@ -1,0 +1,13 @@
+{% for bilde in bildes %}
+{% set url = bilde.thumbnail_url %}
+<div class="col">
+    <div class="card ">
+        <div class="card-img ">
+            <div onclick="activateFullscreen(document.getElementById('{{url}}'))">
+                <img class="card-img-top" id="{{url}}" src="{{url}}" />
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}

@@ -1,0 +1,59 @@
+<p>
+    {{ apf.klase.label }}<br>
+    {{ apf.klase }}
+    {% for error in apf.klase.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+</p>
+<p>
+    {{ apf.grupa.label }}<br>
+    {{ apf.grupa }}
+    {% for error in apf.grupa.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+</p>
+<p>
+    {{ apf.veids.label }}<br>
+    {{ apf.veids }}
+    {% for error in apf.veids.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+</p>
+<p>
+    {{ apf.izejmateriali.label }}<br>
+    {{ apf.izejmateriali }}
+    {% for error in apf.izejmateriali.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    *maxlength=300
+</p>
+<p>
+    {{ apf.apraksts.label }}<br>
+    {{ apf.apraksts }}
+    {% for error in apf.apraksts.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    *maxlength=500
+</p>
+<p>
+    {{ apf.krasa.label }}<br>
+    {{ apf.krasa }}
+    {% for error in apf.krasa.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+</p>
+<p>
+    {{ apf.izmers.label }}<br>
+    {{ apf.izmers }}
+    {% for error in apf.izmers.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+</p>
+<p>
+    {{ apf.cena.label }}<br>
+    {{ apf.cena }}
+    {% for error in apf.cena.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+</p>
+<hr>

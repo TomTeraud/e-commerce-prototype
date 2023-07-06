@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Pirkums pabeigts</h1>
+<hr>
+<h2>Pārskats</h2>
+Pasūtījuma id:{{ pasutijums.id }} <br>
+Pasūtījuma datums: {{ pasutijums.pasutijuma_datums }} <br>
+Pasūtījuma summa: {{ pasutijums.summa| eur }} <br>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Artikuls</th>
+            <th>Cena</th>
+            <th>Atlaide</th>
+            <th>Cena ar atlaidi</th>
+            <th>Izmērs</th>
+            <th>Krāsa</th>
+            <th>Veids</th>
+            <th>Klase</th>
+            <th>Grupa</th>
+        </tr>
+    </thead>
+    
+    <tbody class="table-group-divider">
+        {% for prece in preces_pasutijumam %}
+        <tr>
+            <td>{{ prece.artikuls }}</td>
+            <td>{{ prece.cena| eur }}</td>
+            <td>{{ prece.atlaide }}%</td>           
+            <td>{{ prece.cena| discount(prece.atlaide)}}</td>
+            <td>{{ prece.izmers }}</td>
+            <td>{{ prece.krasa }}</td>
+            <td>{{ prece.veids }}</td>
+            <td>{{ prece.klase }}</td>
+            <td>{{ prece.grupa }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- lietotāja dati no formas -->
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Telefons</th>
+            <th>Vārds</th>
+            <th>Uzvārds</th>
+            <th>Valsts</th>
+            <th>Pilsēta</th>
+            <th>Adrese</th>
+            <th>Pasta indeks</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <tr>
+            <td>{{ anonim_user.email }}</td>
+            <td>{{ anonim_user.telefons}}</td>
+            <td>{{ anonim_user.vards }}</td>
+            <td>{{ anonim_user.uzvards }}</td>
+            <td>{{ anonim_user.valsts }}</td>
+            <td>{{ anonim_user.pilseta }}</td>
+            <td>{{ anonim_user.adrese }}</td>
+            <td>{{ anonim_user.pasta_index }}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<form action="" novalidate><br>
+    {{ ef.hidden_tag() }}
+
+    <div style="display:table;">
+        <a style="display:table-cell;background-color:rgb(155, 158, 139); padding:20px;text-decoration: none;text-align:center;"
+            href="{{ url_for('index') }}">Uz sākumu</a>
+    </div>
+
+</form>
+
+
+{% endblock %}

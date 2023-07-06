@@ -1,0 +1,107 @@
+.card:hover {
+  background-color: rgb(207, 213, 213);
+}
+
+.card-img, .masonry-item {
+  overflow: hidden;
+}
+
+.card-img img, .masonry-item img {
+  transition: all 1s ease;
+}
+
+.card-img:hover img, .masonry-item:hover img {
+  transform: scale(1.1);
+}
+
+.navbar-brand-centered {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* use on grozs grozs  */
+.product-count {
+  position: absolute;
+  top: 0px;
+  /* Adjust as needed */
+  right: 0px;
+  /* Adjust as needed */
+  background-color: red;
+  color: white;
+  font-size: 14px;
+  padding: 0px 6px;
+  border-radius: 50%;
+}
+/* masonry start */
+
+.masonry-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.masonry-item {
+  width: calc(33.33% - 0px);
+  margin: 0px;
+}
+
+.masonry-item img {
+  width: 100%;
+  height: auto;
+}
+
+/* end masonry */
+
+/* footer strat */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.content {
+  min-height: calc(100vh - 60px); /* Adjust 60px to match the height of your footer */
+}
+
+.footer {
+  margin-top: auto;
+  padding: 20px 0;
+}
+
+.footer-nav li {
+  margin-right: 15px;
+}
+
+.footer-nav li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-nav li a:hover {
+  color: lightgray;
+}
+
+.footer .social-link i {
+  padding: 6px;
+  font-size: 1.5rem; /* Adjust the size as desired */
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.footer .social-link:hover i {
+  color: blue; /* Change the color as desired */
+}
+
+/* end footer*/
+
+@media (max-width: 480px) {
+  /* CSS styles for the custom breakpoint */
+}
+
+@media (max-width: 480px) {
+  .custom-col {
+    width: 33.33% !important;
+    flex: 0 0 33.33% !important;
+    max-width: 33.33% !important;
+  }
+}

@@ -1,0 +1,13 @@
+<a class="nav-link dropdown-toggle dropdown-toggle-split" href="#" role="button" data-bs-toggle="dropdown"
+    aria-expanded="false">
+    Admin
+</a>
+<ul class="dropdown-menu dropdown-menu-end"> <!-- Added dropdown-menu-end class -->
+    {% if current_user.is_anonymous %}
+    <li><a class="dropdown-item" href="{{ url_for('login') }}">Ienākt</a></li>
+    {% else %}
+    <li><a class="dropdown-item" href="{{ url_for('edit_prece') }}">Noliktava</a></li>
+    <li><a class="dropdown-item" href="{{ url_for('visi_pasutijumi') }}">Pasūtījumi</a></li>
+    <li><a class="dropdown-item" href="{{ url_for('logout') }}">Iziet</a></li>
+    {% endif %}
+</ul>

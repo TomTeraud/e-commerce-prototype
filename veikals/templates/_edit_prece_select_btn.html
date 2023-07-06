@@ -1,0 +1,8 @@
+    <p>
+        {{ spf.select_prece_form.label }}<br>
+        {{ spf.select_prece_form }}
+        {% for error in spf.select_prece_form.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>{{ spf.select() }}</p>

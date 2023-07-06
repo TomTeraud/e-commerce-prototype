@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+<h1>Informācija par preci!</h1>
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+            <div class="card">
+                <a class="fancybox" data-fancybox="gallery" href="{{ titulbilde.bilde_url }}">
+                    <img src="{{ titulbilde.thumbnail_url }}" alt="titulbilde"
+                        class="card-img-top w-100" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for bilde in bildes %}
+        {% if titulbilde.bilde_url != bilde.bilde_url %}
+        <div class="col-lg-1 col-md-2 col-sm-4 mb-1 custom-col">
+            <div class="card">
+                <a class="fancybox" data-fancybox="gallery" href="{{ bilde.bilde_url }}">
+                    <img src="{{ bilde.thumbnail_url }}" alt="{{ bilde.description }}"
+                        class="card-img-top w-100 {% if bilde.titleimg_url %}big-image{% else %}small-image{% endif %}" />
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+
+
+<!-- dati par preci -->
+{% include '_prece_info_data.html' %}
+<!-- beigas dati par preci -->
+
+<!-- ielikt grozā poga -->
+<form action="{{ url_for('prece_info', pr_id=prece.id, prece_klase=prece.klase, prece_grupa=prece.grupa ) }}"
+    method="POST"><br>
+    <p>
+        {{ pievienotPreciGrozamForm.discount.label }}<br>
+        {{ pievienotPreciGrozamForm.discount(size=120) }}<br>
+        {% for error in pievienotPreciGrozamForm.discount.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    {{ pievienotPreciGrozamForm.hidden_tag() }}
+    {{ pievienotPreciGrozamForm.prece_id(value=prece.id, type='hidden') }}
+    {{ pievienotPreciGrozamForm.ielikt_groza() }}
+</form>
+<!-- beigas ielikt grozā poga -->
+
+
+{% endblock %}

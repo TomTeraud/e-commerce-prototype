@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Pirkumu grozs</h1>
+<hr>
+{% if preces_groza %}
+    {% for prece in preces_groza %}
+<img src="{{ prece.titulbildes_url }}" alt="" style="width: 100px;">
+    {% include '_grozs_data.html' %}
+
+        <form action="{{ url_for('iznemt_preci', pr_id=prece.id, discount=prece.discount) }}" method="post" id="iznemt-preci"><br>
+            {{ ef.hidden_tag() }}
+            <li>
+                {{ ef.submit(value='Izņemt no groza') }}<hr>
+            </li>
+        </form>
+    {% endfor %}
+
+<form action="" method="post" novalidate><br>
+    {{ ef.hidden_tag() }}
+
+    <div style="display:table;">
+        <a style="display:table-cell;
+        background-color:rgb(155, 158, 139); 
+        padding:20px;
+        text-decoration: none;
+        text-align:center;" 
+        href="{{ url_for('pasutijuma_forma') }}">Noformēt Pirkumu</a>
+    </div>
+
+</form>
+
+
+{% endif %}
+
+{% endblock %}

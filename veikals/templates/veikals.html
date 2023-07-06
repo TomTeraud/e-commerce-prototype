@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- start of content -->
+
+    <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-xxl-4 g-3" >
+
+
+        {% for prece in preces %}
+        
+        <div class="col">
+            <div class="card">
+                    <a class="text-decoration-none text-reset" href="{{ url_for('prece_info', pr_id=prece.id, prece_klase=prece.klase, prece_grupa=prece.grupa ) }}">
+                        
+                        <div class="card-img">
+                            {% if prece.titulbildes_url != none %}
+                            <img class="card-img-top img-fluid" src="{{prece.titulbildes_url}}" alt="">
+                            {% else %}
+                            <h4>Titulbilde nav iestatīta</h4>
+                            <img class="card-img-top img-fluid" src="{{url_for('static', filename='img/logo.jpg')}}" alt="">
+                            {% endif %}
+                        </div>
+
+                        <div class="card-body">
+                            {% include '_veikals_data.html' %}
+                        </div>
+                    </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+<!-- end of content -->
+
+
+
+
+<br>
+<!-- start pagination -->
+<div class="">
+    {% if prev_url %}
+    <button type="button" class="btn btn-outline-dark"><a class="text-decoration-none text-reset"
+            href="{{ prev_url }}">Iepriekšējā lapa</a></a></button>
+
+    {% endif %}
+    {% if next_url %}
+    <button type="button" class="btn btn-outline-dark"><a class="text-decoration-none text-reset"
+            href="{{ next_url }}">Nākamā lapa</a></button>
+
+    {% endif %}
+</div>
+<!-- end pagination -->
+
+{% endblock %}
